@@ -1,0 +1,35 @@
+<html>
+	<head>
+	<title>Subtract</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#equal').bind('click', function() {
+				$.getJSON('/subtract_result', {
+				  Num1: $('input[name="Num1"]').val(),
+				  Num2: $('input[name="Num2"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+		</script>
+	</head>
+  
+	<body>
+		<div class='container'>
+		<h1>Subtract</h1>
+			<form>
+				<input type="number" placeholder="Num1" name=Num1> <p> - </p>
+				<input type="number" placeholder="Num1" name=Num2>
+				<a href=# id=equal><button class='btn btn-default'>Equal</button></a>
+			</form>
+		<p id=result></p>
+		<p>Click <a href="/">here</a> back to calculator.</p>
+	{% for message in get_flashed_messages() %}
+		{{message}}
+	{% endfor %}
+		</div>
+	</body>
+<html>
